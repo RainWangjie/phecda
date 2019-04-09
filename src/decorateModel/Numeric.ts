@@ -9,11 +9,17 @@ export class Numeric extends Value<number> {
   public isPercent?: boolean
 
   protected get defaultFormatString(): string {
+    let formatString = '0,0'
+
     if (this.decimals > 0) {
-      return `0,0.${'0'.repeat(this.decimals)}`
+      formatString += `.${'0'.repeat(this.decimals)}`
     }
 
-    return '0,0'
+    if (this.isPercent) {
+      formatString += '%'
+    }
+
+    return formatString
   }
 
   public get presentation() {

@@ -4,7 +4,7 @@ describe('Model Currency', () => {
   const currency = new Currency(100, {
     decimals: 2,
     isPercent: false,
-    displayName: '测试',
+    displayName: 'test',
   })
 
   it('should create instance', () => {

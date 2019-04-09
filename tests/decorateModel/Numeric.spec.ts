@@ -4,7 +4,7 @@ describe('Model Numeric', () => {
   const numeric = new Numeric(1, {
     decimals: 2,
     isPercent: false,
-    displayName: '测试',
+    displayName: 'test',
   })
 
   it('should create instance', () => {
@@ -22,5 +22,16 @@ describe('Model Numeric', () => {
 
     expect(numeric.format()).toBe('10,000.00')
     expect(numeric.format('0.0')).toBe('10000.0')
+  })
+
+  it('should have suffix when isPercent is true', () => {
+    const percent = new Numeric(1, {
+      decimals: 2,
+      isPercent: true,
+      displayName: 'test',
+    })
+
+    expect(percent.format()).toBe('100.00%')
+    expect(percent.presentation).toBe('100.00%')
   })
 })

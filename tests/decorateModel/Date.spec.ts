@@ -4,7 +4,7 @@ jest.mock('moment', () => () => ({ format: () => '2012-11-11' }))
 
 describe('Model Numeric', () => {
   const date = new Date('2012-11-11', {
-    displayName: '测试',
+    displayName: 'test',
   })
 
   it('should create instance', () => {

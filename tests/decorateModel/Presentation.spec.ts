@@ -2,7 +2,7 @@ import { Text } from '../../src'
 
 describe('Model Presentation', () => {
   const text = new Text('test', {
-    displayName: '测试',
+    displayName: 'test',
   })
 
   it('should create instance', () => {
@@ -13,9 +13,9 @@ describe('Model Presentation', () => {
     expect(text.valueDisplayName).toBe('test')
 
     text.valueMapper = {
-      test: '测试',
+      test: 'test',
     }
 
-    expect(text.valueDisplayName).toBe('测试')
+    expect(text.valueDisplayName).toBe('test')
   })
 })
