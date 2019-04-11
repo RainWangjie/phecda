@@ -20,10 +20,10 @@ export interface IDefintion {
     | IDateField
 }
 
-export function decorateModel(
-  data: object | object[],
+export function decorateModel<P>(
+  data: P,
   defintions: IDefintion
-): object | object[] {
+): P {
   if (isObject(data)) {
     Object.keys(data).forEach(key => {
       const value = data[key]
@@ -40,7 +40,7 @@ export function decorateModel(
 
     return data
   } else if (isArray(data)) {
-    return (data as object[]).map(item => decorateModel(item, defintions))
+    return (data as object[]).map(item => decorateModel(item, defintions)) as any as P
   }
 
   return data
