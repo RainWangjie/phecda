@@ -8,22 +8,14 @@ export class Numeric extends Value<number> {
   public decimals: number
   public isPercent?: boolean
 
-  protected get formatStringWithDecimals(): string {
-    let formatString = '0,0'
+  protected get defaultFormatString(): string {
+    const formatString = this.formatStringWithDecimals()
 
-    if (this.decimals > 0) {
-      formatString += `.${'0'.repeat(this.decimals)}`
+    if (this.isPercent) {
+      return `${formatString}%`
     }
 
     return formatString
-  }
-
-  protected get defaultFormatString(): string {
-    if (this.isPercent) {
-      return `${this.formatStringWithDecimals}%`
-    }
-
-    return this.formatStringWithDecimals
   }
 
   public get presentation() {
@@ -39,7 +31,9 @@ export class Numeric extends Value<number> {
   }
 
   public get fuzzyValue(): number {
-    return numeral(numeral(this.presentation).format(this.formatStringWithDecimals)).value()
+    return numeral(numeral(this.presentation).format(this.formatStringWithDecimals(
+      this.isPercent ? this.decimals + 2 : this.decimals
+    ))).value()
   }
 
   public get kind() {
@@ -75,5 +69,15 @@ export class Numeric extends Value<number> {
       displayName: this.field.displayName,
       isPercent: this.isPercent,
     })
+  }
+
+  protected formatStringWithDecimals(decimals = this.decimals): string {
+    let formatString = '0,0'
+
+    if (decimals > 0) {
+      formatString += `.${'0'.repeat(decimals)}`
+    }
+
+    return formatString
   }
 }

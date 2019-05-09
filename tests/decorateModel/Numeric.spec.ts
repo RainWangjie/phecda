@@ -44,6 +44,6 @@ describe('Model Numeric', () => {
 
     expect(percent.format()).toBe('1.80%')
     expect(percent.presentation).toBe('1.80%')
-    expect(percent.fuzzyValue).toBe(0.02)
+    expect(percent.fuzzyValue).toBe(0.018)
   })
 })
