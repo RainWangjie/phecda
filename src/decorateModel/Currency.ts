@@ -3,10 +3,6 @@ import numeral from 'numeral'
 import { Numeric } from './Numeric'
 
 export class Currency extends Numeric {
-  public get presentation() {
-    return this.format()
-  }
-
   public get yuan(): number {
     return numeral(this.numeral)
       .divide(100)

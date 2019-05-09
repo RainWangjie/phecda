@@ -34,4 +34,16 @@ describe('Model Numeric', () => {
     expect(percent.format()).toBe('100.00%')
     expect(percent.presentation).toBe('100.00%')
   })
+
+  it('needs to have the correct decimal place when isPercent is true', () => {
+    const percent = new Numeric(0.017977528089887642, {
+      decimals: 2,
+      isPercent: true,
+      displayName: 'test',
+    })
+
+    expect(percent.format()).toBe('1.80%')
+    expect(percent.presentation).toBe('1.80%')
+    expect(percent.fuzzyValue).toBe(0.02)
+  })
 })
